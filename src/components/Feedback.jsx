@@ -7,10 +7,10 @@ function Feedback() {
   const [feedback, setFeedback] = useState({});
   let [feedbackData, setFeedbackData] = useState([]);
 
-  useEffect(()=>{
-    let data=JSON.parse(localStorage.getItem("feedback")) || [];
+  useEffect(() => {
+    let data = JSON.parse(localStorage.getItem("feedback")) || [];
     setFeedbackData(data)
-  },[])
+  }, [])
 
   let handelStar = (star) => {
     setStar(star)
@@ -57,11 +57,11 @@ function Feedback() {
                   </div>
                   <div className="form-group mb-3">
                     <label for="name" className="text-dark">Name:</label>
-                    <input type="text" className="form-control" name='name' placeholder="Enter your name" onChange={ handelInput } value={ feedback.name || "" } />
+                    <input type="text" className="form-control" name='name' placeholder="Enter your name" onChange={ handelInput } value={ feedback.name || "" } required />
                   </div>
                   <div className="form-group mb-3">
                     <label for="feedback" className="text-dark">Feedback:</label>
-                    <textarea className="form-control" name='massage' rows="3" placeholder="Enter your feedback" onChange={ handelInput } value={ feedback.massage || "" }></textarea>
+                    <textarea className="form-control" name='massage' rows="3" placeholder="Enter your feedback" onChange={ handelInput } value={ feedback.massage || "" } required></textarea>
                   </div>
                   <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
@@ -75,11 +75,12 @@ function Feedback() {
         <div className="row">
           {
             feedbackData.map((val, idx) => (
-              <div className="card w-50">
-                <div className="card-body">
-                  <h5 className="card-title">{val.name}</h5>
-                  <p className="card-text">{val.massage}</p>
-                  {
+              <div className="col-6">
+                <div className="card mb-4">
+                  <div className="card-body">
+                    <h5 className="card-title">{ val.name }</h5>
+                    <p className="card-text">{ val.massage }</p>
+                    {
                       [...Array(val.star)].map((v, i) => (
                         <FaStar
                           className='fs-1'
@@ -87,6 +88,7 @@ function Feedback() {
                         />
                       ))
                     }
+                  </div>
                 </div>
               </div>
             ))
