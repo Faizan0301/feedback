@@ -76,15 +76,15 @@ function Feedback() {
           {
             feedbackData.map((val, idx) => (
               <div className="col-6">
-                <div className="card mb-4">
+                <div className="card mb-4 bg-light">
                   <div className="card-body">
                     <h5 className="card-title">{ val.name }</h5>
                     <p className="card-text">{ val.massage }</p>
                     {
-                      [...Array(val.star)].map((v, i) => (
+                      [...Array(5)].map((v, i) => (
                         <FaStar
                           className='fs-1'
-                          color='gold'
+                          color={val.star >= i+1 ? 'gold' : "gray" }
                         />
                       ))
                     }
